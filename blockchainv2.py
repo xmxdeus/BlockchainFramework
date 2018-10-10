@@ -5,6 +5,10 @@ from flask import Flask, jsonify, request
 import urllib3
 import requests
 
+#Main Functions:
+#+Listen to Http requests (should change to TCP connections)
+#+Respond with necessary information
+
 # Each blockchain node can request for a new transaction to be calculated or
 # be requested to mine a new transaction.
 
