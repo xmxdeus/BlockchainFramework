@@ -5,6 +5,7 @@ from flask import Flask, jsonify, request
 import requests
 from uuid import uuid4
 import subprocess
+import logging
 
 class Miner(object):
     def __init__(self):
@@ -25,7 +26,9 @@ class Miner(object):
                 },
             'assembly instruction': None
             }]
-        print('Miner initiated, genesis block generated')
+        LOG_FILE = time() + node_identificator + '.log'
+        logging.basicConfig(filename=LOG_FILE,level=logging.DEBUG)
+        logging.debug(time() + ': Miner initiated, genesis block generated')
         
     def register_node(self, node_identificator, address):
         """
@@ -50,15 +53,15 @@ class Miner(object):
             }
 
         self.chain.append(block)
-        print('Block added to chain')
+        logging.debug(time() + ': Block added to chain')
         #sends GET request broadcasting that a new block was mined to everyone
         #activating the resolve_conflicts on all nodes.
         
         for node in self.nodes:
-            print(str(self.nodes[node]))
+            logging.debug(time() + ': ' + str(self.nodes[node]))
             #needs to be run as a separate process
             process = subprocess.Popen(['python', '/Users/Amduz/Documents/blockchain/Announcer.py', '-a', self.nodes[node]])#, '-n', self.address, '-c', json.dumps(self.chain) #could implement a post request that will send block data to other nodes so that this node isnt bugged out.
-            print('Broadcast sent to '+str(self.nodes[node])+' about new block')
+            logging.debug(time() + ': ' + 'Broadcast sent to '+str(self.nodes[node])+' about new block')
 
     @property
     def last_block(self):
@@ -67,31 +70,31 @@ class Miner(object):
 
     @property
     def node_identity(self):
-        print('Getting node identificator')
+        logging.debug(time() + ': ' + 'Getting node identificator')
         
         return self.node_identificator
 
     @node_identity.setter
     def node_identity(self, node_ID):
-        print('Setting node indentificator')
-        print(node_ID)
+        logging.debug(time() + ': ' + 'Setting node indentificator to:')
+        logging.debug(time() + ': ' + node_ID)
         self.node_identificator = node_ID
 
     @property
     def address(self):
-        print('Getting address')
+        logging.debug(time() + ': ' + 'Getting address')
         return self._address
 
     @address.setter
     def address(self, address):
-        print('Setting address')
-        print(address)
+        logging.debug(time() + ': ' + 'Setting address')
+        logging.debug(time() + ': ' + address)
         self._address = address
 
     @property
     def nodes_list(self):
-        print('Getting nodes list')
-        print(self.nodes)
+        logging.debug(time() + ': ' + 'Getting nodes list')
+        logging.debug(time() + ': ' + self.nodes)
         return self.nodes
 
     def proof_of_work(self, last_proof):
@@ -106,7 +109,7 @@ class Miner(object):
         #in essence if it has 6 leading zeros.
         while self.valid_proof(last_proof, proof) is False:
             proof +=1
-        print('Proof of mining: '+str(proof))
+        logging.debug(time() + ': ' + 'Proof of mining: '+str(proof))
         return proof
 
     def valid_chain(self, chain):
@@ -125,7 +128,7 @@ class Miner(object):
             previous_block = block
             current_index += 1
 
-        print('Chain valid')
+        logging.debug(time() + ': ' + 'Chain valid')
         return True
 
     @staticmethod
@@ -166,14 +169,14 @@ class Miner(object):
         #for each node in the nodes list, request chains from their address!!!!
         for node in neighbours:
             response = requests.get('http://'+neighbours[node]+'/chain')
-            print('Requested for node '+str(neighbours[node])+'\'s chain')
+            logging.debug(time() + ': ' + 'Requested for node '+str(neighbours[node])+'\'s chain')
 
             #checks if the correct response received from the node
             if response.status_code == 200:
                 #assigns values to variables from the response
                 length = response.json()['length']
                 chain=response.json()['chain']
-                print('Chain received')
+                logging.debug(time() + ': ' + 'Chain received')
 
                 #checks if length is longer than min_length AND if the chain is valid
                 #meaning the network is accepting the new chain and in turn new blocks on it.
@@ -181,14 +184,14 @@ class Miner(object):
                     #if true, sets new min_length and selects the longest out of all nodes chain, 
                     min_length = length
                     new_chain = chain
-                    print('Chain longer?!')
+                    logging.debug(time() + ': ' + 'Chain longer?!')
 
         #assigns the new longest chain replacing the current chain
         if new_chain:
             self.chain = new_chain
-            print("Chain replaced")
+            logging.debug(time() + ': ' + "Chain replaced")
             return True
-        print('Chain kept')
+        logging.debug(time() + ': ' + 'Chain kept')
         return False
     
 def shutdown_server():
@@ -196,7 +199,7 @@ def shutdown_server():
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
-    print('Miner shut')
+    logging.debug(time() + ': ' + 'Miner shut')
 
     
 # FLASK SECTION
@@ -214,7 +217,7 @@ miner = Miner()
 
 @app.route('/block/new', methods=['GET'])
 def notified_new_block():
-    print('Broadcast received of new block')
+    logging.debug(time() + ': ' + 'Broadcast received of new block')
     #opens a new flask server that will resolve the conflict for this particular node and then save its chain
     process = subprocess.Popen(['pipenv', 'run', 'python', '/Users/Amduz/Documents/blockchain/ResolveConflicts.py', '-n', json.dumps(miner.nodes), '-c', json.dumps(miner.chain), '-a', miner.address])#
     
@@ -234,7 +237,7 @@ def replace_chain():
     json_chain=request.get_json()
     miner.chain = json.loads(json_chain)
     response ='Chain replaced'
-    print(response)
+    logging.debug(time() + ': ' + response)
     return jsonify(response), 201
 
 @app.route('/nodes/register', methods=['POST'])
@@ -253,15 +256,15 @@ def register_nodes():
         'message': 'New nodes have been added',
         'total_nodes': list(miner.nodes),
     }
-    print(response['message']) #algorithm of finding needs to be worked on
-    print(miner.nodes)
+    logging.debug(time() + ': ' + response['message']) #algorithm of finding needs to be worked on
+    logging.debug(time() + ': ' + miner.nodes)
     return jsonify(response), 201
 
 @app.route('/mine', methods=['GET'])
 def mine():
     #need to make the process separate as an interrupt is required for new block event
     miner.resolve_conflicts()
-    print('Conflicts resolved')
+    logging.debug(time() + ': ' + 'Conflicts resolved')
     # We run the proof of work algorithm to get the next proof...
     last_block = miner.last_block
     last_proof = last_block['header']['proof']
@@ -306,5 +309,5 @@ if __name__ == '__main__':
     miner.node_identity = node_identity
     miner.address = '0.0.0.0:'+str(port)
     app.run(host='0.0.0.0', port=port)
-    print('App ended')
+    logging.debug(time() + ': ' + 'App ended')
     
