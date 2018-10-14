@@ -25,3 +25,9 @@ The framework comes with a set up manager tool called networkmngr.py. It's used 
 
 ## Instructions
 
+
+
+## To Do
+
++ Convert to TCP
++ Make Timestamp in Logs more readable
