@@ -10,13 +10,13 @@ import subprocess
 import random
 
 
-
 def start(amount):
     processes = {}
     print(amount)
     for i in range(amount):
-        # code that creates each seperate terminal window with a server loaded up
-        subprocess.Popen(['ttab', '-w', 'pipenv', 'run', 'python', 'eventblockchain.py', '-p', str(5000+i)])
+        #Starts each node in the background.
+        pargz = ['pipenv', 'run', 'python', 'eventblockchain.py', '-p', str(5000+i)]
+        subprocess.Popen(pargz)
         print('Created a process')
     #delay to let the miners wake up to full operating mode.
     time.sleep(5)
