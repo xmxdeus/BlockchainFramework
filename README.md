@@ -28,7 +28,7 @@ The framework comes with a set up manager tool called networkmngr.py. It's used 
 ### Start up
 Open Terminal. Go to the working directory this repository is stored in and run
 
-'''bash
+'''
 pipenv run python networkmngr.py -p 4999 -a 6
 '''
 
@@ -41,19 +41,25 @@ This will start the node manager client on localhost:4999 with 6 initial node cl
 
 ### NetworkMngr instructions
 
-Send Mining requests to all nodes
-> /start/mining 	
++ Send Mining requests to all nodes
+
+> [address]:[port]/start/mining
+
 _Preset a specfic number of times to mine a block in network, in random 1-3s intervals_
 
-Shutdown Network 
-> /shutdown/all 	
++ Shutdown Network 
+
+> /shutdown/all
+
 _Stops all node clients_
 
 
 ### EventBlockchain instructions
 
-Start Proof of Work for new block
-> /block/new 
++ Start Proof of Work for new block
+
+> /block/new
+
 _On top of genesis or last block_
 
 ## To Do
