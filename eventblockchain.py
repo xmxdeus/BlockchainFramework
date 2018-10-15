@@ -96,7 +96,7 @@ class Miner(object):
     @property
     def nodes_list(self):
         logging.debug(str(time()) + ': ' + 'Getting nodes list')
-        logging.debug(str(time()) + ': ' + str(self.nodes))
+        logging.debug(self.nodes)
         return self.nodes
 
     def proof_of_work(self, last_proof):
@@ -202,6 +202,7 @@ def shutdown_server():
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
     logging.debug(str(time()) + ': ' + 'Miner shut')
+    print('Miner shut')
 
     
 # FLASK SECTION
@@ -259,7 +260,7 @@ def register_nodes():
         'total_nodes': list(miner.nodes),
     }
     logging.debug(str(time()) + ': ' + response['message']) #algorithm of finding needs to be worked on
-    logging.debug(str(time()) + ': ' + miner.nodes)
+    logging.debug(miner.nodes)
     return jsonify(response), 201
 
 @app.route('/mine', methods=['GET'])
