@@ -26,7 +26,8 @@ The framework comes with a set up manager tool called networkmngr.py. It's used 
 ## Methodology
 
 ### Start up
-Open Terminal. Go to the working directory this repository is stored in. Before starting the program, optionally, run the below command to remove unecessary 'Courtesy Notices' being displayed.	
+Open Terminal. Go to the working directory this repository is stored in. Before starting the program, optionally, run the below command to remove unecessary 'Courtesy Notices' being displayed. Or add it to your .bash_profile file.
+
 ```export PIPENV_IGNORE_VIRTUALENVS=0```
 
 To create your network of nodes execute:
@@ -44,27 +45,28 @@ This will start the node manager client on localhost:4999 with 6 initial node cl
 
 + Send Mining requests to all nodes
 
-> [address]:[port]/start/mining
+_[address]:[port]/start/mining_
 
-_Preset a specfic number of times to mine a block in network, in random 1-3s intervals_
+> Preset a specfic number of times to mine a block in network, in random 1-3s intervals
 
 + Shutdown Network 
 
-> /shutdown/all
+_[address]:[port]/shutdown/all_
 
-_Stops all node clients_
+> Stops all node clients
 
 
 ### EventBlockchain instructions
 
 + Start Proof of Work for new block
 
-> /block/new
+_[address]:[port]/block/new_
 
-_On top of genesis or last block_
+> On top of genesis or last block
 
 ## To Do
 
 + Convert to TCP
 + Make Timestamp in Logs more readable
 + Add content in blocks
++ Implement a check to see if childprocesses terminated before shutting Manager.
