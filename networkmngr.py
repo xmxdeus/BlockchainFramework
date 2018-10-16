@@ -11,9 +11,8 @@ import random
 
 
 def start(amount):
-    #Envirment variables setup
-    subprocess.Popen(['export', 'PIPENV_IGNORE_VIRTUALENVS=0']) #Gets rid of a courtesy notice
     processes = {}
+    print(amount)
     for i in range(amount):
         #Starts each node in the background.
         pargz = ['pipenv', 'run', 'python', 'eventblockchain.py', '-p', str(5000+i)]
