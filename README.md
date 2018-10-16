@@ -26,11 +26,12 @@ The framework comes with a set up manager tool called networkmngr.py. It's used 
 ## Methodology
 
 ### Start up
-Open Terminal. Go to the working directory this repository is stored in and run
+Open Terminal. Go to the working directory this repository is stored in. Before starting the program, optionally, run the below command to remove unecessary 'Courtesy Notices' being displayed.	
+```export PIPENV_IGNORE_VIRTUALENVS=0```
 
-'''
-pipenv run python networkmngr.py -p 4999 -a 6
-'''
+To create your network of nodes execute:
+
+```pipenv run python networkmngr.py -p 4999 -a 6```
 
 ### Background action
 This will start the node manager client on localhost:4999 with 6 initial node clients (node ports start from 5000 and increment by 1). Firstly, they're started as processes in the background, next they intitialise themselves by:	
