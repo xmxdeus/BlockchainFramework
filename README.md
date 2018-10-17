@@ -108,6 +108,10 @@ _[address]:[port]/shutdown_
 
 > Shuts the node down and sends response (need more secure and checks)
 
+## Examples 
+
+Can be found inside examples.md file. _(need to add timestamps for networkmngr.py)_
+
 ## To Do
 
 + Convert to TCP
@@ -115,3 +119,5 @@ _[address]:[port]/shutdown_
 + Add content in blocks
 + Implement a check to see if childprocesses terminated before shutting Manager.
 + Node ID, addresses and etc need to be put into files.
++ Create Flowchart
++ Add error handling
