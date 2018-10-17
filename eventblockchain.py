@@ -237,7 +237,7 @@ def full_chain():
 
 @app.route('/chain/replace', methods=['POST'])
 def replace_chain():
-    json_chain=request.get_json()
+    json_chain = request.get_json()
     miner.chain = json.loads(json_chain)
     response ='Chain replaced'
     logging.debug(str(time()) + ': ' + response)

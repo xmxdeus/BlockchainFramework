@@ -23,19 +23,27 @@ The framework comes with a set up manager tool called networkmngr.py. It's used 
 
 > _Later on I will implement IP nodes and convert from HTTP infrastructure to TCP ensuring less overhead and faster responses._
 
+### Useful Tools
+
++ Postman.app
+
 ## Methodology
 
-### Start up
-Open Terminal. Go to the working directory this repository is stored in. Before starting the program, optionally, run the below command to remove unecessary 'Courtesy Notices' being displayed. Or add it to your .bash_profile file.
+### Prerequisites
+
+Open Terminal. Go to the working directory this repository is stored in. Before starting the program, optionally, run the below command to remove unecessary 'Courtesy Notices' being displayed. Or add it to your _.bash_profile_ file.
 
 ```export PIPENV_IGNORE_VIRTUALENVS=0```
+
+### Start up
 
 To create your network of nodes execute:
 
 ```pipenv run python networkmngr.py -p 4999 -a 6```
 
-### Background action
-This will start the node manager client on localhost:4999 with 6 initial node clients (node ports start from 5000 and increment by 1). Firstly, they're started as processes in the background, next they intitialise themselves by:	
+#### Background action
+
+This will start the node manager client on localhost:4999 with 6 initial node clients (node ports start from 5000 and increment by 1). Firstly, they're started as processes in the background, next they are initialised by:	
 + Genereting a random hash ID for itself
 + The manager downloads each node's ID and address 	
 + Manager compiles the list of all available nodes in the network and sends a copy to each so they're all _aware_ of each other
@@ -47,7 +55,7 @@ This will start the node manager client on localhost:4999 with 6 initial node cl
 
 _[address]:[port]/start/mining_
 
-> Preset a specfic number of times to mine a block in network, in random 1-3s intervals
+> Preset to a specfic number of times to mine a block in network, in random 1-3s intervals
 
 + Shutdown Network 
 
@@ -58,11 +66,47 @@ _[address]:[port]/shutdown/all_
 
 ### EventBlockchain instructions
 
-+ Start Proof of Work for new block
++ Notify node of new block being successfully mined
 
 _[address]:[port]/block/new_
 
-> On top of genesis or last block
+> The node will run ResolveConflicts.py to update it's chain based on the established Consensus
+
++ Get chain
+
+_[address]:[port]/chain_
+
+> Returns the current chain
+
++ Replace chain
+
+_[address]:[port]/chain/replace_
+
+> Will replace node's chain w/ the one provided in this POST request (json format only)
+
++ Register nodes list
+
+_[address]:[port]/nodes/register_
+
+> Adds listed supplied json list of nodes to the node's registry
+
++ Mine
+
+_[address]:[port]/mine_
+
+> One last time run ResolveConflicts.py before Node starts proof of work on HEAD block's hash (current master chain)
+
++ Get Node Status
+
+_[address]:[port]/node/id_
+
+> Returns the node's ID, address and their known record of other nodes (should make it a limit and give group bands of IP addresses eg. 100.0.3.xxx = 255 group members)
+
++ Shutdown Node
+
+_[address]:[port]/shutdown_
+
+> Shuts the node down and sends response (need more secure and checks)
 
 ## To Do
 
@@ -70,3 +114,4 @@ _[address]:[port]/block/new_
 + Make Timestamp in Logs more readable
 + Add content in blocks
 + Implement a check to see if childprocesses terminated before shutting Manager.
++ Node ID, addresses and etc need to be put into files.
