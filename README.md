@@ -25,7 +25,7 @@ The framework comes with a set up manager tool called networkmngr.py. It's used 
 
 ### Useful Tools
 
-+ Postman.app
++ Postman.app (you can use your browser to enter localhost requests)
 
 ## Methodology
 
@@ -110,7 +110,7 @@ _[address]:[port]/shutdown_
 
 ## Examples 
 
-Can be found inside examples.md file. _(need to add timestamps for networkmngr.py)_
+Can be found inside examples.md file. It shows how the two networkmngr.py instructins function. _(need to add timestamps for networkmngr.py)_
 
 ## To Do
 
@@ -121,3 +121,4 @@ Can be found inside examples.md file. _(need to add timestamps for networkmngr.p
 + Node ID, addresses and etc need to be put into files.
 + Create Flowchart
 + Add error handling
++ Change order of mining response in networkmngr.py
