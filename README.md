@@ -94,6 +94,8 @@ Probe a different node's chain to see how the chain has progressed (chain should
 
 When ready to shut the whole network use this request.
 
+> You can find the output and example outputs of networkmngr.py and all Nodes in the Log folder
+
 ## networkmngr Instructions
 
 + Send Mining requests to all nodes
