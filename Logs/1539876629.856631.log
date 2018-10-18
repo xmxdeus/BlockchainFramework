@@ -1,0 +1,104 @@
+DEBUG:root:1539876629.856957: Node initiated, genesis block generated
+DEBUG:root:1539876629.879276: Setting node indentificator to:
+DEBUG:root:1539876629.879464: f17835fc00cd4fbfb0cbb4805eb2d039
+DEBUG:root:1539876629.879613: Setting address
+DEBUG:root:1539876629.879738: 0.0.0.0:5002
+INFO:werkzeug: * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+DEBUG:root:1539876632.6877491: Getting node identificator
+DEBUG:root:1539876632.687855: Getting address
+DEBUG:root:1539876632.6879098: Getting nodes list
+DEBUG:root:{}
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:30:32] "GET /node/id HTTP/1.1" 200 -
+DEBUG:root:1539876632.712186: New nodes have been added
+DEBUG:root:{'f9662ccfa2734c0baf1991f5522b173a': '0.0.0.0:5000', 'd045e8b7c1e849ca8dc2c2cb68031544': '0.0.0.0:5001', '59beb890c8e14211b5fd6967babb12e6': '0.0.0.0:5003', '52142c3b7a9147eea8d4085b57caad6b': '0.0.0.0:5004', 'a1f1cde1291f499085f000ea1fdc2cab': '0.0.0.0:5005'}
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:30:32] "POST /nodes/register HTTP/1.1" 201 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:28] "GET /chain HTTP/1.1" 200 -
+DEBUG:root:1539876689.308086: Broadcast received of new block
+DEBUG:root:1539876689.3083038: Getting address
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:29] "GET /block/new HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:30] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:31] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:34] "GET /chain HTTP/1.1" 200 -
+DEBUG:root:1539876694.9511402: Chain replaced
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:34] "POST /chain/replace HTTP/1.1" 201 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:34] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:34] "GET /chain HTTP/1.1" 200 -
+DEBUG:root:1539876695.237418: Broadcast received of new block
+DEBUG:root:1539876695.2376618: Getting address
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:35] "GET /block/new HTTP/1.1" 200 -
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5000
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5000 "GET /chain HTTP/1.1" 200 478
+DEBUG:root:1539876695.95484: Requested for node 0.0.0.0:5000's chain
+DEBUG:root:1539876695.955158: Chain received
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5001
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5001 "GET /chain HTTP/1.1" 200 478
+DEBUG:root:1539876695.960958: Requested for node 0.0.0.0:5001's chain
+DEBUG:root:1539876695.961237: Chain received
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5003
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5003 "GET /chain HTTP/1.1" 200 737
+DEBUG:root:1539876695.967787: Requested for node 0.0.0.0:5003's chain
+DEBUG:root:1539876695.96806: Chain received
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5004
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5004 "GET /chain HTTP/1.1" 200 737
+DEBUG:root:1539876695.9746718: Requested for node 0.0.0.0:5004's chain
+DEBUG:root:1539876695.974935: Chain received
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5005
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5005 "GET /chain HTTP/1.1" 200 737
+DEBUG:root:1539876695.9815922: Requested for node 0.0.0.0:5005's chain
+DEBUG:root:1539876695.981898: Chain received
+DEBUG:root:1539876695.982045: Chain kept
+DEBUG:root:1539876695.982205: Conflicts resolved
+DEBUG:root:1539876696.2102: Proof of mining: 47663
+DEBUG:root:1539876696.210525: Block added to chain
+DEBUG:root:1539876696.21068: 0.0.0.0:5000
+DEBUG:root:1539876696.218275: Broadcast sent to 0.0.0.0:5000 about new block
+DEBUG:root:1539876696.219008: 0.0.0.0:5001
+DEBUG:root:1539876696.2278569: Broadcast sent to 0.0.0.0:5001 about new block
+DEBUG:root:1539876696.228477: 0.0.0.0:5003
+DEBUG:root:1539876696.2354639: Broadcast sent to 0.0.0.0:5003 about new block
+DEBUG:root:1539876696.2367501: 0.0.0.0:5004
+DEBUG:root:1539876696.247515: Broadcast sent to 0.0.0.0:5004 about new block
+DEBUG:root:1539876696.248023: 0.0.0.0:5005
+DEBUG:root:1539876696.3876932: Broadcast sent to 0.0.0.0:5005 about new block
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:36] "GET /mine HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:37] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:38] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:38] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:38] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:39] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:40] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:40] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:40] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:40] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:40] "GET /chain HTTP/1.1" 200 -
+DEBUG:root:1539876701.923923: Chain replaced
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:41] "POST /chain/replace HTTP/1.1" 201 -
+DEBUG:root:1539876702.3112729: Broadcast received of new block
+DEBUG:root:1539876702.311588: Getting address
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:42] "GET /block/new HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:42] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:44] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:44] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:44] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:44] "GET /chain HTTP/1.1" 200 -
+DEBUG:root:1539876708.0153: Chain replaced
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:48] "POST /chain/replace HTTP/1.1" 201 -
+DEBUG:root:1539876708.353459: Broadcast received of new block
+DEBUG:root:1539876708.353994: Getting address
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:48] "GET /block/new HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:48] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:50] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:50] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:50] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:50] "GET /chain HTTP/1.1" 200 -
+DEBUG:root:1539876715.3684301: Chain replaced
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:55] "POST /chain/replace HTTP/1.1" 201 -
+DEBUG:root:1539876715.790747: Broadcast received of new block
+DEBUG:root:1539876715.7910662: Getting address
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:55] "GET /block/new HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:59] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:59] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:59] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:59] "GET /chain HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:38:18] "GET /shutdown HTTP/1.1" 200 -
+DEBUG:root:1539877098.465195: Server shut

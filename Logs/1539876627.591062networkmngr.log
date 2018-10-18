@@ -1,0 +1,74 @@
+DEBUG:root:1539876627.593962Created a process 0
+DEBUG:root:1539876627.597377Created a process 1
+DEBUG:root:1539876627.600886Created a process 2
+DEBUG:root:1539876627.618289Created a process 3
+DEBUG:root:1539876627.6480892Created a process 4
+DEBUG:root:1539876627.6629171Created a process 5
+DEBUG:root:1539876632.665893About to get node
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5000
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5000 "GET /node/id HTTP/1.1" 200 95
+DEBUG:root:1539876632.681057About to get node
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5001
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5001 "GET /node/id HTTP/1.1" 200 95
+DEBUG:root:1539876632.685357About to get node
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5002
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5002 "GET /node/id HTTP/1.1" 200 95
+DEBUG:root:1539876632.689518About to get node
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5003
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5003 "GET /node/id HTTP/1.1" 200 95
+DEBUG:root:1539876632.693732About to get node
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5004
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5004 "GET /node/id HTTP/1.1" 200 95
+DEBUG:root:1539876632.697952About to get node
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5005
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5005 "GET /node/id HTTP/1.1" 200 95
+DEBUG:root:1539876632.702223All nodes downloaded
+DEBUG:root:{'f9662ccfa2734c0baf1991f5522b173a': '0.0.0.0:5000', 'd045e8b7c1e849ca8dc2c2cb68031544': '0.0.0.0:5001', 'f17835fc00cd4fbfb0cbb4805eb2d039': '0.0.0.0:5002', '59beb890c8e14211b5fd6967babb12e6': '0.0.0.0:5003', '52142c3b7a9147eea8d4085b57caad6b': '0.0.0.0:5004', 'a1f1cde1291f499085f000ea1fdc2cab': '0.0.0.0:5005'}
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5000
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5000 "POST /nodes/register HTTP/1.1" 201 273
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5001
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5001 "POST /nodes/register HTTP/1.1" 201 273
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5002
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5002 "POST /nodes/register HTTP/1.1" 201 273
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5003
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5003 "POST /nodes/register HTTP/1.1" 201 273
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5004
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5004 "POST /nodes/register HTTP/1.1" 201 273
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5005
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5005 "POST /nodes/register HTTP/1.1" 201 273
+DEBUG:root:1539876632.724683Nodes list sent to all nodes
+INFO:werkzeug: * Running on http://0.0.0.0:4999/ (Press CTRL+C to quit)
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5000
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5000 "GET /mine HTTP/1.1" 200 8
+DEBUG:root:1539876688.9206269Sent mining request
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5001
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5001 "GET /mine HTTP/1.1" 200 8
+DEBUG:root:1539876694.928298Sent mining request
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5002
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5002 "GET /mine HTTP/1.1" 200 8
+DEBUG:root:1539876696.3907042Sent mining request
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5003
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5003 "GET /mine HTTP/1.1" 200 8
+DEBUG:root:1539876701.789351Sent mining request
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5004
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5004 "GET /mine HTTP/1.1" 200 8
+DEBUG:root:1539876707.949829Sent mining request
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5005
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5005 "GET /mine HTTP/1.1" 200 8
+DEBUG:root:1539876715.3429031Sent mining request
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:31:57] "GET /start/mining HTTP/1.1" 200 -
+DEBUG:root:1539877098.4270326
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5000
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5000 "GET /shutdown HTTP/1.1" 200 26
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5001
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5001 "GET /shutdown HTTP/1.1" 200 26
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5002
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5002 "GET /shutdown HTTP/1.1" 200 26
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5003
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5003 "GET /shutdown HTTP/1.1" 200 26
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5004
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5004 "GET /shutdown HTTP/1.1" 200 26
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 0.0.0.0:5005
+DEBUG:urllib3.connectionpool:http://0.0.0.0:5005 "GET /shutdown HTTP/1.1" 200 26
+DEBUG:root:1539877098.580674Manager shut
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2018 16:38:18] "GET /shutdown/all HTTP/1.1" 200 -
