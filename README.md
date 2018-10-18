@@ -2,11 +2,15 @@
 
 ### Content
 
-*Description*
-*Methodology*
-*networkmngr Instructions*
-*Node Instructions*
-*Personal To Do List*
+**Description**
+
+**Methodology**
+
+**networkmngr Instructions**
+
+**Node Instructions**
+
+**Personal To Do List**
 
 ## Description
 
