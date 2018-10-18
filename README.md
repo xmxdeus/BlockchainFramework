@@ -1,5 +1,15 @@
 # BlockchainFramework
 
+### Content
+
+*Description*
+*Methodology*
+*networkmngr Instructions*
+*Node Instructions*
+*Personal To Do List*
+
+## Description
+
 Initially a learning experience, turned project, turned hobby.  
 I decided I'll best understand blockchain technology by making my own.
 
