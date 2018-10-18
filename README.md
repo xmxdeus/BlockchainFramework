@@ -32,6 +32,11 @@ The framework comes with a set up manager tool called networkmngr.py. It's used 
 
 ### Prerequisites
 
+You need to have the following installed before attempting to run this program:
++ python 3.7 (at least)
++ pip
++ pipenv
+
 Open Terminal. Go to the working directory this repository is stored in. Before starting the program, optionally, run the below command to remove unecessary 'Courtesy Notices' being displayed. Or add it to your _.bash_profile_ file.
 
 ```export PIPENV_IGNORE_VIRTUALENVS=0```
