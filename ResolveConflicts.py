@@ -49,7 +49,7 @@ class Conflict_resolver(object):
             r = requests.post('http://'+initaddress+'/chain/replace', json = json.dumps(new_chain))
             #print("Chain replaced")
             return True
-        print('Chain kept')
+        #print('Chain kept')
         return False
 
     def valid_chain(self, chain):
