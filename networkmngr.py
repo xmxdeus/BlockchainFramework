@@ -100,7 +100,7 @@ def shutdown():
 def mining():
     for n in range(1):
         node.begin_sending(amount)
-    return jsonify('Beggining mining'), 200
+    return jsonify('Mining requests sent'), 200
 
 if __name__ == '__main__':
     from argparse import ArgumentParser

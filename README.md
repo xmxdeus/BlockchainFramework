@@ -26,7 +26,6 @@ The framework comes with a set up manager tool called networkmngr.py. It's used 
 ### Useful Tools
 
 + Postman.app
-+ Browser to enter localhost requests
 
 ## Methodology
 
@@ -57,7 +56,31 @@ This will start the node manager client on localhost:4999 with 6 initial node cl
 
 ### Example use of networkmngr
 
-## networkmngr instructions
+1. Open Postman.app 
+
+2. Start creating requests.
+
+Firstly, we'll query one of the nodes for it's ID and then for it's chain. 
+
+3. Use the GET _0.0.0.0:5000/node/id_ then GET _0.0.0.0:5000/chain_
+
+What do the received json files show?
+
+Now we can start adding some blocks to the existing chain in the network.
+
+4. Call GET _0.0.0.0:4999/start/mining_
+
+Wait for a response from the server to notify of sent mining requests (should be 6)
+
+5. Call GET _0.0.0.0:5002/chain_
+
+Probe a different node's chain to see how the chain has progressed (chain should be 7 blocks long)
+
+6. Call GET _0.0.0.0:4999/shutdown/all_
+
+When ready to shut the whole network use this request.
+
+## networkmngr Instructions
 
 + Send Mining requests to all nodes
 
@@ -72,7 +95,7 @@ _[address]:[port]/shutdown/all_
 > Stops all node clients
 
 
-## Node instructions
+## Node Instructions
 
 + Notify node of new block being successfully mined
 
@@ -120,13 +143,12 @@ _[address]:[port]/shutdown_
 ## Personal To Do List
 
 + Convert to TCP/UDP
-+ Make Timestamp in Logs more readable ^
++ Make Timestamp in Logs more readable 
 + Add content in blocks
 + Implement a check to see if childprocesses terminated before shutting Manager.
 + Node ID, addresses and etc need to be put into files. 
 + Create Flowchart
 + Add error handling
 + Change order of mining response in networkmngr.py
-+ Rename modules ^
 + Learn threading in python to improve request handling on server-side
 	-Implement java server architecture
