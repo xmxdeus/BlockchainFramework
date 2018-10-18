@@ -2,22 +2,30 @@
 #registers all nodes to all nodes, depending on how many were created.
 import hashlib
 import json
+from time import time as nowtime
 import time
 from flask import Flask, jsonify, request
 import requests
 from uuid import uuid4
 import subprocess
 import random
+import os
+import logging
 
 
 def start(amount):
-    processes = {}
-    print(amount)
+    processes = {} #this is where server side thread management will be
+
+    #logging
+    cwd = os.getcwd()
+    LOG_FILE = cwd + '/Logs/' + str(nowtime()) + 'networkmngr' + '.log'
+    logging.basicConfig(filename=LOG_FILE,level=logging.DEBUG)
+
     for i in range(amount):
         #Starts each node in the background.
-        pargz = ['pipenv', 'run', 'python', 'eventblockchain.py', '-p', str(5000+i)]
+        pargz = ['pipenv', 'run', 'python', 'Node.py', '-p', str(5000+i)]
         subprocess.Popen(pargz)
-        print('Created a process')
+        logging.debug(str(nowtime()) + 'Created a process ' + str(i))
     #delay to let the miners wake up to full operating mode.
     time.sleep(5)
     node.download_node_info(amount)
@@ -30,16 +38,16 @@ class Boss_node(object):
 
     def download_node_info(self, amount):
         for i in range(amount):
-            print('About to get node')
+            logging.debug(str(nowtime()) + 'About to get node')
             node_info = requests.get('http://0.0.0.0:'+str(i+5000)+'/node/id')
             self.nodes[node_info.json()['node']] = node_info.json()['address']
-        print('All nodes downloaded')
-        print(self.nodes)
+        logging.debug(str(nowtime()) + 'All nodes downloaded')
+        logging.debug(self.nodes)
         
     def register_to_all(self, amount):
         for i in range(amount):
             r = requests.post('http://0.0.0.0:'+str(i+5000)+'/nodes/register', json = json.dumps(self.format_to_register(self.nodes)))
-        print('Nodes list sent to all nodes')
+        logging.debug(str(nowtime()) + 'Nodes list sent to all nodes')
 
     @staticmethod
     def format_to_register(nodes):
@@ -61,18 +69,18 @@ class Boss_node(object):
     #add command that adds a single word to the block
             for n in range(amount):
                 self.send_to_mine('0.0.0.0:'+str(5000+n))
-                print('Sent mining request')
+                logging.debug(str(nowtime()) + 'Sent mining request')
                 time.sleep(random.randrange(1, stop=3, step=1))
 
 def shutdown_server():
-    print(amount)
+    logging.debug(str(nowtime()) + str(amount))
     for i in range(amount):
         node_info = requests.get('http://0.0.0.0:'+str(i+5000)+'/shutdown')
     func = request.environ.get('werkzeug.server.shutdown')
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
-    print('Manager shut')
+    logging.debug(str(nowtime()) + 'Manager shut')
     
 
 # FLASK SECTION

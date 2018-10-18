@@ -8,10 +8,10 @@ import subprocess
 import logging
 import os #used to access cwd to store logs
 
-class Miner(object):
+class Node(object):
     def __init__(self):
         """
-        initialises the properties of this Miner, has id, list of nodes in network
+        initialises the properties of this Node, has id, list of nodes in network
         and the chain in the node
         """
         self.node_identificator = str()
@@ -30,11 +30,11 @@ class Miner(object):
         cwd = os.getcwd()
         LOG_FILE = cwd + '/Logs/' + str(time()) + self.node_identificator + '.log'
         logging.basicConfig(filename=LOG_FILE,level=logging.DEBUG)
-        logging.debug(str(time()) + ': Miner initiated, genesis block generated')
+        logging.debug(str(time()) + ': Node initiated, genesis block generated')
         
     def register_node(self, node_identificator, address):
         """
-        registers a node to the nodes set the miner has
+        registers a node to the nodes set the Node has
         """
         self.nodes[node_identificator] = address
         if self.node_identificator == node_identificator:
@@ -201,9 +201,6 @@ def shutdown_server():
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
-    logging.debug(str(time()) + ': ' + 'Miner shut')
-    print('Miner shut')
-
     
 # FLASK SECTION
 
@@ -213,8 +210,8 @@ app = Flask(__name__)
 # Generate a globally unique address for this node
 node_identity = str(uuid4()).replace('-', '')
 
-# Instantiate a Miner node
-miner = Miner()
+# Instantiate a Node node
+Node = Node()
 
 
 
@@ -222,7 +219,7 @@ miner = Miner()
 def notified_new_block():
     logging.debug(str(time()) + ': ' + 'Broadcast received of new block')
     #opens a new flask server that will resolve the conflict for this particular node and then save its chain
-    process = subprocess.Popen(['pipenv', 'run', 'python', '/Users/Amduz/Documents/blockchain/ResolveConflicts.py', '-n', json.dumps(miner.nodes), '-c', json.dumps(miner.chain), '-a', miner.address])#
+    process = subprocess.Popen(['pipenv', 'run', 'python', '/Users/Amduz/Documents/blockchain/ResolveConflicts.py', '-n', json.dumps(Node.nodes), '-c', json.dumps(Node.chain), '-a', Node.address])#
     
     response = 'Notified'
     return jsonify(response), 200
@@ -230,15 +227,15 @@ def notified_new_block():
 @app.route('/chain', methods=['GET'])
 def full_chain():
     response = {
-        'chain': miner.chain,
-        'length': len(miner.chain)
+        'chain': Node.chain,
+        'length': len(Node.chain)
     }
     return jsonify(response), 200
 
 @app.route('/chain/replace', methods=['POST'])
 def replace_chain():
     json_chain = request.get_json()
-    miner.chain = json.loads(json_chain)
+    Node.chain = json.loads(json_chain)
     response ='Chain replaced'
     logging.debug(str(time()) + ': ' + response)
     return jsonify(response), 201
@@ -254,36 +251,36 @@ def register_nodes():
         return "Error: Please supply a valid list of nodes", 400
 
     for node, address in zip(nodes, addresses):
-        miner.register_node(node, address)
+        Node.register_node(node, address)
     response = {
         'message': 'New nodes have been added',
-        'total_nodes': list(miner.nodes),
+        'total_nodes': list(Node.nodes),
     }
     logging.debug(str(time()) + ': ' + response['message']) #algorithm of finding needs to be worked on
-    logging.debug(miner.nodes)
+    logging.debug(Node.nodes)
     return jsonify(response), 201
 
 @app.route('/mine', methods=['GET'])
 def mine():
     #need to make the process separate as an interrupt is required for new block event
-    miner.resolve_conflicts()
+    Node.resolve_conflicts()
     logging.debug(str(time()) + ': ' + 'Conflicts resolved')
     # We run the proof of work algorithm to get the next proof...
-    last_block = miner.last_block
+    last_block = Node.last_block
     last_proof = last_block['header']['proof']
-    proof = miner.proof_of_work(last_proof)
+    proof = Node.proof_of_work(last_proof)
 
     # We must receive a reward for finding the proof.
     # The sender is "0" to signify that this node has mined a new coin.
-##    miner.new_transaction(
+##    Node.new_transaction(
 ##        sender="Blockchain",
 ##        recipient=node_identity,
 ##        amount=40,
 ##    )
 
     # Forge the new Block by adding it to the chain
-    previous_hash = miner.hash(last_block)
-    block = miner.new_block(proof, previous_hash)
+    previous_hash = Node.hash(last_block)
+    block = Node.new_block(proof, previous_hash)
     response = 'Mined'
     
     return jsonify(response), 200
@@ -291,9 +288,9 @@ def mine():
 @app.route('/node/id', methods=['GET'])
 def get_node_id():
     response = {
-        'node': miner.node_identity,
-        'address': miner.address,
-        'nodes': miner.nodes_list
+        'node': Node.node_identity,
+        'address': Node.address,
+        'nodes': Node.nodes_list
         }
     return jsonify(response), 200
 
@@ -309,8 +306,8 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--port', default=5000, type=int, help='port to listen on')
     args = parser.parse_args()
     port = args.port
-    miner.node_identity = node_identity
-    miner.address = '0.0.0.0:'+str(port)
+    Node.node_identity = node_identity
+    Node.address = '0.0.0.0:'+str(port)
     app.run(host='0.0.0.0', port=port)
-    logging.debug(str(time()) + ': ' + 'App ended')
+    logging.debug(str(time()) + ': ' + 'Server shut')
     

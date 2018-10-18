@@ -25,7 +25,8 @@ The framework comes with a set up manager tool called networkmngr.py. It's used 
 
 ### Useful Tools
 
-+ Postman.app (you can use your browser to enter localhost requests)
++ Postman.app
++ Browser to enter localhost requests
 
 ## Methodology
 
@@ -47,9 +48,11 @@ This will start the node manager client on localhost:4999 with 6 initial node cl
 + Genereting a random hash ID for itself
 + The manager downloads each node's ID and address 	
 + Manager compiles the list of all available nodes in the network and sends a copy to each so they're all _aware_ of each other
-+ 
++ Manager and Nodes all wait for requests
 
-### NetworkMngr instructions
+### Example use of networkmngr
+
+## networkmngr instructions
 
 + Send Mining requests to all nodes
 
@@ -64,7 +67,7 @@ _[address]:[port]/shutdown/all_
 > Stops all node clients
 
 
-### EventBlockchain instructions
+## Node instructions
 
 + Notify node of new block being successfully mined
 
@@ -108,17 +111,17 @@ _[address]:[port]/shutdown_
 
 > Shuts the node down and sends response (need more secure and checks)
 
-## Examples 
 
-Can be found inside examples.md file. It shows how the two networkmngr.py instructins function. _(need to add timestamps for networkmngr.py)_
+## Personal To Do List
 
-## To Do
-
-+ Convert to TCP
-+ Make Timestamp in Logs more readable
++ Convert to TCP/UDP
++ Make Timestamp in Logs more readable ^
 + Add content in blocks
 + Implement a check to see if childprocesses terminated before shutting Manager.
-+ Node ID, addresses and etc need to be put into files.
++ Node ID, addresses and etc need to be put into files. 
 + Create Flowchart
 + Add error handling
 + Change order of mining response in networkmngr.py
++ Rename modules ^
++ Learn threading in python to improve request handling on server-side
+	-Implement java server architecture
